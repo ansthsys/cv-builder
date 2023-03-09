@@ -28,6 +28,12 @@ function SignInPage() {
       : setPassword(e.target.value);
   };
 
+  async function signInWithGitHub() {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "github",
+    });
+  }
+
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
@@ -79,7 +85,6 @@ function SignInPage() {
         variant="contained"
         startIcon={<GitHub />}
         fullWidth
-        href="#"
         sx={{
           mb: 4,
           backgroundColor: "#212121",
@@ -87,6 +92,7 @@ function SignInPage() {
             backgroundColor: "#424242",
           },
         }}
+        onClick={signInWithGitHub}
       >
         Signin with Github
       </Button>
